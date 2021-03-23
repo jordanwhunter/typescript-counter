@@ -3,14 +3,14 @@ import Button from './Button';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  background: #323232;
-  flex: 1;
+  
 `;
 
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 80px);
   grid-template-rows: repeat(5, 80px);
+  grid-gap: 10px;
 `;
 
 const Calculator: React.FC<{}> = () => {
