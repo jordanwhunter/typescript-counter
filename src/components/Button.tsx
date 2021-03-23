@@ -6,7 +6,9 @@ type ButtonProps = {
 };
 
 const StyledButton = styled.button`
-
+  background-color: #e48900;
+  border: none;
+  border-radius: 8px;
 `;
 
 const Button: React.FC<ButtonProps> = ({ label }) => {
