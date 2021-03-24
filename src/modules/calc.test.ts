@@ -37,16 +37,18 @@ test('derives displayValue upon new numerical input', () => {
   expect(state.displayValue).toEqual(3)
 });
 
-test('derives final state', () => {
+test('derives final state (with addition and subtraction)', () => {
   const inputs: Array<CalcInput> = [
     {type: InputType.Numerical, value: 1},
     {type: InputType.Numerical, value: 2},
     {type: InputType.Operator, operator: OperatorType.Add},
     {type: InputType.Numerical, value: 3},
+    {type: InputType.Operator, operator: OperatorType.Subtract},
+    {type: InputType.Numerical, value: 5},
     {type: InputType.Operator, operator: OperatorType.Equals},
   ];
 
   const state = Calc.getState(inputs);
-  expect(state.displayValue).toEqual(15)
+  expect(state.displayValue).toEqual(10)
 });
 
