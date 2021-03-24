@@ -19,6 +19,9 @@ const Calculator: React.FC<{}> = () => {
       <Grid>
         <Button label='AC' position={[0, 0]} width={2} />
         <Button label='?' position={[2, 0]} width={2} />
+        <Button label='-' position={[3, 1]} />
+        <Button label='+' position={[3, 2]} />
+        <Button label='=' position={[3, 3]} height={2}/>
         <Button label='9' position={[2, 1]} />
         <Button label='8' position={[1, 1]} />
         <Button label='7' position={[0, 1]} />
