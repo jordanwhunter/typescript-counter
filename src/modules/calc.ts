@@ -23,11 +23,6 @@ export type CalcState = {
   displayValue: number;
 };
 
-/**
- * input: [1, 2, +, 3, =]
- * output: [{+ 12}, {+ 3}, {=}]
- */
-
 export type Operation = {
   operator: OperatorType;
   value: number;
@@ -99,7 +94,10 @@ export const getOperations = (inputs: Array<CalcInput>): Array<Operation> => {
 };
 
 const getState = (inputs: Array<CalcInput>): CalcState => {
-  return { displayValue: 0 };
+  const operations = getOperations(inputs);
+  const total = operations.reduce<number>((sum, operation) => sum + operation.value, 0);
+
+  return { displayValue: total };
 };
 
 const Calc = {
@@ -107,9 +105,3 @@ const Calc = {
 };
 
 export default Calc;
-
-/** 
- * Calculator Brain:
- * Input: --> [UserInput, UserInput, ...]
- * Generate: --> { state }
-*/
