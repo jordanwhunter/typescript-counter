@@ -1,7 +1,6 @@
 import React from 'react';
 import Calculator from './components/Calculator';
 import styled from 'styled-components';
-import './App.css';
 
 const Container = styled.div`
   display: flex;
