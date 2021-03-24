@@ -9,7 +9,6 @@ test('generates operations', () => {
     {type: InputType.Operator, operator: OperatorType.Equals},
   ];
 
-  
   const operations: Array<Operation> = [
     { operator: OperatorType.Add, value: 12 },
     { operator: OperatorType.Add, value: 3 },
@@ -27,14 +26,6 @@ test('derive state', () => {
     {type: InputType.Numerical, value: 3},
     {type: InputType.Operator, operator: OperatorType.Equals},
   ];
-
-  /**
-   * [
-   *  { operator: OperatorType.Add, value: 12 },
-   *  { operator: OperatorType.Add, value: 3 },
-   *  { operator: OperatorType.Equals, value: 12 },
-   * ]
-   */
 
   const state = Calc.getState(inputs);
   expect(state.displayValue).toEqual(15)
