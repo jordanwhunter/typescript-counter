@@ -1,4 +1,4 @@
-import Calc, { CalcInput, getOperations, InputType, Operation, OperatorType } from './calc';
+import Calc, { CalcInput, InputType, Operation, OperatorType } from './calc';
 
 test('generates operations', () => {
   const inputs: Array<CalcInput> = [
@@ -15,10 +15,29 @@ test('generates operations', () => {
     { operator: OperatorType.Equals, value: 0 },
   ];
    
-  expect(getOperations(inputs)).toEqual(operations);
+  expect(Calc.getOperationsBuilder(inputs).operations).toEqual(operations);
 });
 
-test('derive state', () => {
+test('derives displayValue with no inputs', () => {
+  const inputs: Array<CalcInput> = [];
+
+  const state = Calc.getState(inputs);
+  expect(state.displayValue).toEqual(0)
+});
+
+test('derives displayValue upon new numerical input', () => {
+  const inputs: Array<CalcInput> = [
+    {type: InputType.Numerical, value: 1},
+    {type: InputType.Numerical, value: 2},
+    {type: InputType.Operator, operator: OperatorType.Add},
+    {type: InputType.Numerical, value: 3},
+  ];
+
+  const state = Calc.getState(inputs);
+  expect(state.displayValue).toEqual(3)
+});
+
+test('derives final state', () => {
   const inputs: Array<CalcInput> = [
     {type: InputType.Numerical, value: 1},
     {type: InputType.Numerical, value: 2},
@@ -30,3 +49,4 @@ test('derive state', () => {
   const state = Calc.getState(inputs);
   expect(state.displayValue).toEqual(15)
 });
+
