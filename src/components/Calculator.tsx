@@ -28,6 +28,7 @@ const Calculator: React.FC<{}> = () => {
         <Button label='3' position={[2, 3]} />
         <Button label='2' position={[1, 3]} />
         <Button label='1' position={[0, 3]} />
+        <Button label='0' position={[0, 4]} width={3} />
       </Grid>
     </Container>
   )
