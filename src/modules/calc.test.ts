@@ -25,6 +25,15 @@ test('derives displayValue with no inputs', () => {
   expect(state.displayValue).toEqual(0)
 });
 
+test('derives displayValue upon first numerical input', () => {
+  const inputs: Array<CalcInput> = [
+    {type: InputType.Numerical, value: 1},
+  ];
+
+  const state = Calc.getState(inputs);
+  expect(state.displayValue).toEqual(1)
+});
+
 test('derives displayValue upon new numerical input', () => {
   const inputs: Array<CalcInput> = [
     {type: InputType.Numerical, value: 1},
