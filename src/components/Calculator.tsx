@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Button, { ButtonType } from './Button';
-import Calc, { CalcInput, InputType } from '../modules/calc';
+import Calc, { CalcInput, InputType, OperatorType } from '../modules/calc';
 import styled from 'styled-components';
 
 const Container = styled.div``;
@@ -27,8 +27,16 @@ const Calculator: React.FC<{}> = () => {
   const { displayValue } = state;
   // console.log(inputs)
   
+  const appendInput = (input: CalcInput): void => {
+    setInputs((prev) => [...prev, input])
+  };
+  
   const handleNumerical = (value: number) => () => {
-    setInputs(prev => [...prev, { type: InputType.Numerical, value }])
+    appendInput({ type: InputType.Numerical, value })
+  };
+
+  const handleOperator = (operator: OperatorType) => () => {
+    appendInput({ type: InputType.Operator, operator})
   };
 
   return (
@@ -37,9 +45,9 @@ const Calculator: React.FC<{}> = () => {
         <Display>{displayValue}</Display>
         <Button label='AC' position={[0, 1]} width={2} />
         <Button label='C' position={[2, 1]} width={2} />
-        <Button label='-' position={[3, 2]} />
-        <Button label='+' position={[3, 3]} />
-        <Button label='=' position={[3, 4]} height={2}/>
+        <Button label='-' position={[3, 2]} onClick={handleOperator(OperatorType.Subtract)} />
+        <Button label='+' position={[3, 3]} onClick={handleOperator(OperatorType.Add)} />
+        <Button label='=' position={[3, 4]} height={2} onClick={handleOperator(OperatorType.Equals)} />
         <Button label='9' position={[2, 2]} buttonType={ButtonType.Number} onClick={handleNumerical(9)} />
         <Button label='8' position={[1, 2]} buttonType={ButtonType.Number} onClick={handleNumerical(8)} />
         <Button label='7' position={[0, 2]} buttonType={ButtonType.Number} onClick={handleNumerical(7)} />
